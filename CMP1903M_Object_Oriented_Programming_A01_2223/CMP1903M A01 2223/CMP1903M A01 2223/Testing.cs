@@ -17,37 +17,37 @@ namespace CMP1903M_A01_2223
             Pack testPack3 = new Pack();
 
             // Fisher-Yates Shuffle
-            testPack1.shuffleCardPack(1);
+            Pack.testPack1.shuffleCardPack(1);
 
             // Ensuring that only one card has been dealt
-            testPack1.deal();
-            Debug.Assert(testPack1.Count == 51);
+            Pack.testPack1.deal();
+            Debug.Assert(Pack.testPack1.pack.Count == 51);
 
             // Ensuring that 20 cards have been dealt
-            testPack1.dealCard(10);
-            Debug.Assert(testPack1.Count == 41);
+            Pack.testPack1.dealCard(10);
+            Debug.Assert(Pack.testPack1.pack.Count == 41);
 
             // Riffle Shuffle 
-            testPack2.shuffleCardPack(2);
+            Pack.testPack2.shuffleCardPack(2);
 
             // Ensuring that only one card has been dealt
-            testPack2.deal();
-            Debug.Assert(testPack1.Count == 51);
+            Pack.testPack2.deal();
+            Debug.Assert(Pack.testPack1.pack.Count == 51);
 
             // Ensuring that 20 cards have been dealt
-            testPack2.dealCard(10);
-            Debug.Assert(testPack1.Count == 41);
+            Pack.testPack2.dealCard(10);
+            Debug.Assert(Pack.testPack1.pack.Count == 41);
 
             // No Shuffle 
-            testPack3.shuffleCardPack(3);
+            Pack.testPack3.shuffleCardPack(3);
 
             // Ensuring that only one card has been dealt
-            testPack3.deal();
-            Debug.Assert(testPack1.Count == 51);
+            Pack.testPack3.deal();
+            Debug.Assert(Pack.testPack1.pack.Count == 51);
 
             // Ensuring that 20 cards have been dealt
-            testPack3.dealCard(10);
-            Debug.Assert(testPack1.Count == 41);
+            Pack.testPack3.dealCard(10);
+            Debug.Assert(Pack.testPack1.pack.Count == 41);
         }
     }
 }

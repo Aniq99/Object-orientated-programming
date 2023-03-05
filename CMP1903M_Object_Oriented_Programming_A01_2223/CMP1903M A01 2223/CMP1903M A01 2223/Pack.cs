@@ -102,7 +102,7 @@ namespace CMP1903M_A01_2223
 
 			// Add the first "amount" of cards to tempList and remove from the pack
 			for(int i = 0; i < amount; i++) {
-				tempList.Add(pack[0]);
+				dealtCards.Add(pack[0]);
 				pack.RemoveAt(0);
 				Console.WriteLine("Dealt card: Value - {0}  Suit - {1}", dealtCards[i].Value, dealtCards[i].Suit);
 			}

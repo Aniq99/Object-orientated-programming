@@ -25,18 +25,19 @@ namespace CMP1903M_A01_2223
         
                 try {
                     int shuffle = Convert.ToInt32(choice);
-                    isValid = playPack.shuffleCardPack(shuffle);
+                    isValid = Pack.playPack.shuffleCardPack(shuffle);
 
                 } catch (FormatException e) {
                     Console.WriteLine("Invalid input. Please enter a number.");
                 }
 
             }
+            int size = Pack.playPack.pack.Count;
 
-            Console.WriteLine("Size of shuffled decks: {0}\n", playPack.Count);
+            Console.WriteLine("Size of shuffled decks: {0}\n", size);
             int dealNum = 0;
 
-            while(dealNum < 1 || dealNum > playPack.Count) {
+            while(dealNum < 1 || dealNum > size) {
                 Console.Write("Choose a number of cards to deal: ");
                 string dealTotal = Console.ReadLine();
                 try {
