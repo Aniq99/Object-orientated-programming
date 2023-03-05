@@ -8,7 +8,7 @@ namespace CMP1903M_A01_2223
 {
     class Pack
     {
-        List<Card> pack = new List<Card>();
+        static List<Card> pack = new List<Card>();
         public Pack()
         {
             //Initialise the card pack here
