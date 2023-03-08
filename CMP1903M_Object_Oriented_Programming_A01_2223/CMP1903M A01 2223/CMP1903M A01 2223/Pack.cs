@@ -8,7 +8,7 @@ namespace CMP1903M_A01_2223
 {
     class Pack
     {
-        static List<Card> pack = new List<Card>();
+       private static List<Card> pack = new List<Card>();
         public Pack()
         {
             //Initialise the card pack here
@@ -21,12 +21,55 @@ namespace CMP1903M_A01_2223
             }
 			
 			// Check to see if the created pack is of the correct size
-			if(pack.Count == 52) {
+			if(getPackSize() == 52) {
 				Console.WriteLine("Successfully created pack.");
 			} else {
-				Console.WriteLine("Something went wrong with the pack creation. Pack of size {0} was created.", pack.Count);
+				Console.WriteLine("Something went wrong with the pack creation. Pack of size {0} was created.", getPackSize());
 			}
-		} 
+		}
+
+		private static void fisherYates()
+		{
+            Console.WriteLine("Fisher Yates Shuffle requested...");
+            Random rng = new Random();
+            int packSize = getPackSize();
+            for (int i = 0; i < (packSize - 1); i++)
+            {
+                // Generate a random number
+                int rand = i + rng.Next(packSize - i);
+
+                // Swap the cards around based on the random numbers
+                Card temp = pack[rand];
+                pack[rand] = pack[i];
+                pack[i] = temp;
+            }
+        }
+
+		private static void riffleShuffle()
+		{
+            // Riffle shuffle
+            Console.WriteLine("Riffle Shuffle requested...");
+            // Create two lists to hold both halves of the list 
+            List<Card> topHalf = new List<Card>();
+            List<Card> bottomHalf = new List<Card>();
+
+            // Add the first 26 cards to one list and the last 26 to the other
+            for (int i = 0, j = 26; i < 26; i++, j++)
+            {
+                topHalf.Add(pack[i]);
+                bottomHalf.Add(pack[j]);
+            }
+
+            // Empty the pack 
+            pack.Clear();
+
+            // Add cards from both lists to form the riffle shuffle pack
+            for (int i = 0; i < 26; i++)
+            {
+                pack.Add(topHalf[i]);
+                pack.Add(bottomHalf[i]);
+            }
+        }
 
         public static bool shuffleCardPack(int typeOfShuffle)
         {
@@ -36,43 +79,16 @@ namespace CMP1903M_A01_2223
 				else do nothing */
 			switch(typeOfShuffle) {
 				case 1:
-					// Fister shuffle
-					Console.WriteLine("Fisher Yates Shuffle requested...");
-					Random rng = new Random();
-					int packSize = pack.Count;
-					for(int i = 0; i < (packSize - 1); i++) {
-						// Generate a random number
-						int rand = i + rng.Next(packSize - i);
-
-						// Swap the cards around based on the random numbers
-						Card temp = pack[rand];
-						pack[rand] = pack[i];
-						pack[i] = temp;
-					}
+					// Fisher yates shuffle
+					fisherYates();
+					
 					Console.WriteLine("Pack Shuffled.");
 					return true;
 
-				case 2: 
-					// Riffle shuffle
-					Console.WriteLine("Riffle Shuffle requested...");
-					// Create two lists to hold both halves of the list 
-					List<Card> topHalf = new List<Card>();
-					List<Card> bottomHalf = new List<Card>();
-					
-					// Add the first 26 cards to one list and the last 26 to the other
-					for(int i = 0, j = 26; i < 26; i++, j++) {
-						topHalf.Add(pack[i]);
-						bottomHalf.Add(pack[j]);
-					}
-					
-					// Empty the pack 
-					pack.Clear();
-					
-					// Add cards from both lists to form the riffle shuffle pack
-					for(int i = 0; i < 26; i ++) {
-							pack.Add(topHalf[i]);
-							pack.Add(bottomHalf[i]);
-					}
+				case 2:
+                    //riffle shuffle
+                    riffleShuffle();
+
 					Console.WriteLine("Pack Shuffled.");
 					return true;
 
@@ -109,5 +125,11 @@ namespace CMP1903M_A01_2223
 
 			return dealtCards;
         }
+
+        public static int getPackSize()
+        {
+            return pack.Count;
+        }
+
     }
 }
